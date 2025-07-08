@@ -7,10 +7,12 @@ using System.Threading.Tasks;
 using MHerreraProgreso3.Models;
 using MHerreraProgreso3.Services;
 using System.Windows.Input;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace MHerreraProgreso3.ViewModels
 {
-    class ProductosViewModel:BaseViewModel
+    class ProductosViewModel: BaseViewModel
     {
         private readonly ProductoDatabase _database;
         private readonly LoggerService _logger;
@@ -54,10 +56,7 @@ namespace MHerreraProgreso3.ViewModels
             Nombre = Categoria = string.Empty;
             Cantidad = 1;
             PrecioEstimado = 0;
-            OnPropertyChanged(nameof(Nombre));
-            OnPropertyChanged(nameof(Categoria));
-            OnPropertyChanged(nameof(Cantidad));
-            OnPropertyChanged(nameof(PrecioEstimado));
+           
         }
     }
 }

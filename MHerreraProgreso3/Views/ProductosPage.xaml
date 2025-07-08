@@ -1,12 +1,34 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MHerreraProgreso3.Views.ProductosPage"
-             Title="ProductosPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             xmlns:vm="clr-namespace:MHerreraProgreso3.ViewModels"
+             Title="Lista de Compras">
+
+    <ContentPage.BindingContext>
+        <vm:ProductosViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20">
+            <Entry Placeholder="Producto" Text="{Binding Nombre}" />
+            <Entry Placeholder="Categoría" Text="{Binding Categoria}" />
+            <Entry Placeholder="Cantidad" Keyboard="Numeric" Text="{Binding Cantidad}" />
+            <Entry Placeholder="Precio Estimado" Keyboard="Numeric" Text="{Binding PrecioEstimado}" />
+
+            <Button Text="Agregar" Command="{Binding AgregarProductoCommand}" />
+
+            <CollectionView ItemsSource="{Binding Productos}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Padding="10">
+                            <Label Text="{Binding Nombre}" FontAttributes="Bold"/>
+                            <Label Text="{Binding Categoria}" />
+                            <Label Text="{Binding Cantidad}" />
+                            <Label Text="{Binding PrecioEstimado, StringFormat='${0:F2}'}" />
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
